@@ -1,0 +1,9 @@
+
+=== Mon Apr 20 22:57:56 2020
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were added:
+  com.unity.package-manager-ui@2.2.0
+  com.unity.ext.nunit@1.0.0
