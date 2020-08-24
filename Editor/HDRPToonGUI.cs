@@ -186,8 +186,8 @@ namespace UnityEditor.Rendering.HDRP.Toon
 
 
         //ボタンサイズ.
-        public GUILayoutOption[] shortButtonStyle = new GUILayoutOption[] { GUILayout.Width(130) };
-        public GUILayoutOption[] middleButtonStyle = new GUILayoutOption[] { GUILayout.Width(130) };
+        static internal GUILayoutOption[] shortButtonStyle = new GUILayoutOption[] { GUILayout.Width(130) };
+        static internal GUILayoutOption[] middleButtonStyle = new GUILayoutOption[] { GUILayout.Width(130) };
 
 
         //
@@ -1099,11 +1099,13 @@ namespace UnityEditor.Rendering.HDRP.Toon
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.PrefixLabel("VRChat Recommendation");
+//            EditorGUILayout.PrefixLabel("VRChat Recommendation");
+            EditorGUILayout.PrefixLabel("Optimize for HDR Light Intensity");
             //GUILayout.Space(60);
             if (GUILayout.Button("Apply Settings", middleButtonStyle))
             {
-                Set_Vrchat_Recommendation(material);
+                OpenOptimizeForHDRLightIntensityWindow(material);
+//                Set_Vrchat_Recommendation(material);
                 _Use_VrcRecommend = true;
             }
             EditorGUILayout.EndHorizontal();
@@ -1215,6 +1217,14 @@ namespace UnityEditor.Rendering.HDRP.Toon
         }
         //
 
+        void OpenOptimizeForHDRLightIntensityWindow(Material material)
+        {
+            OptimizeForHDRLightIntensityWindow.OpenWindow(this, material);
+        }
+        void OptimizeForHDRLightIntensity(Material material)
+        {
+
+        }
         void Set_Vrchat_Recommendation(Material material)
         {
             material.SetFloat(ShaderPropIsLightColor_Base, 1);
@@ -2522,6 +2532,292 @@ namespace UnityEditor.Rendering.HDRP.Toon
             m_MaterialEditor.RangeProperty(tessExtrusionAmount, "Extrusion Amount");
 
             EditorGUILayout.Space();
+        }
+
+        internal void GUI_OptimizeForHDRLightIntensity(Material material)
+        {
+            GUILayout.Label("Optimize For HDR Light Intensity", EditorStyles.boldLabel);
+            EditorGUILayout.Space();
+            EditorGUILayout.Space();
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("Base Color");
+            //GUILayout.Space(60);
+            if (material.GetFloat(ShaderPropIsLightColor_Base) == 0)
+            {
+                if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIsLightColor_Base, 1);
+                }
+            }
+            else
+            {
+                if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIsLightColor_Base, 0);
+                }
+            }
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("1st ShadeColor");
+            //GUILayout.Space(60);
+            if (material.GetFloat(ShaderPropIs_LightColor_1st_Shade) == 0)
+            {
+                if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIs_LightColor_1st_Shade, 1);
+                }
+            }
+            else
+            {
+                if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIs_LightColor_1st_Shade, 0);
+                }
+            }
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("2nd ShadeColor");
+            //GUILayout.Space(60);
+            if (material.GetFloat(ShaderPropIs_LightColor_2nd_Shade) == 0)
+            {
+                if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIs_LightColor_2nd_Shade, 1);
+                }
+            }
+            else
+            {
+                if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIs_LightColor_2nd_Shade, 0);
+                }
+            }
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("HighColor");
+            //GUILayout.Space(60);
+            if (material.GetFloat(ShaderPropIs_LightColor_HighColor) == 0)
+            {
+                if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIs_LightColor_HighColor, 1);
+                }
+            }
+            else
+            {
+                if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIs_LightColor_HighColor, 0);
+                }
+            }
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("RimLight");
+            //GUILayout.Space(60);
+            if (material.GetFloat(ShaderPropIs_LightColor_RimLight) == 0)
+            {
+                if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIs_LightColor_RimLight, 1);
+                }
+            }
+            else
+            {
+                if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIs_LightColor_RimLight, 0);
+                }
+            }
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("Ap_RimLight");
+            //GUILayout.Space(60);
+            if (material.GetFloat(ShaderPropIs_LightColor_Ap_RimLight) == 0)
+            {
+                if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIs_LightColor_Ap_RimLight, 1);
+                }
+            }
+            else
+            {
+                if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIs_LightColor_Ap_RimLight, 0);
+                }
+            }
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("MatCap");
+            //GUILayout.Space(60);
+            if (material.GetFloat(ShaderPropIs_LightColor_MatCap) == 0)
+            {
+                if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIs_LightColor_MatCap, 1);
+                }
+            }
+            else
+            {
+                if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIs_LightColor_MatCap, 0);
+                }
+            }
+            EditorGUILayout.EndHorizontal();
+
+            if (IsShadingGrademap)//AngelRingがある場合.
+            {
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.PrefixLabel("Angel Ring");
+                //GUILayout.Space(60);
+                if (material.GetFloat(ShaderPropIs_LightColor_AR) == 0)
+                {
+                    if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
+                    {
+                        material.SetFloat(ShaderPropIs_LightColor_AR, 1);
+                    }
+                }
+                else
+                {
+                    if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
+                    {
+                        material.SetFloat(ShaderPropIs_LightColor_AR, 0);
+                    }
+                }
+                EditorGUILayout.EndHorizontal();
+            }
+
+            if (material.HasProperty(ShaderPropOutline))//OUTLINEがある場合.
+            {
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.PrefixLabel("Outline");
+                //GUILayout.Space(60);
+                if (material.GetFloat(ShaderPropIs_LightColor_Outline) == 0)
+                {
+                    if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
+                    {
+                        material.SetFloat(ShaderPropIs_LightColor_Outline, 1);
+                    }
+                }
+                else
+                {
+                    if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
+                    {
+                        material.SetFloat(ShaderPropIs_LightColor_Outline, 0);
+                    }
+                }
+                EditorGUILayout.EndHorizontal();
+            }
+            EditorGUILayout.Space();
+
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("Receive System Shadows");
+            //GUILayout.Space(60);
+            if (material.GetFloat(ShaderPropSetSystemShadowsToBase) == 0)
+            {
+                if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropSetSystemShadowsToBase, 1);
+                }
+            }
+            else
+            {
+                if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropSetSystemShadowsToBase, 0);
+                }
+            }
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.Space();
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("PointLights Hi-Cut Filter");
+            //GUILayout.Space(60);
+            if (material.GetFloat(ShaderPropIsFilterHiCutPointLightColor) == 0)
+            {
+                if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIsFilterHiCutPointLightColor, 1);
+                }
+            }
+            else
+            {
+                if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
+                {
+                    material.SetFloat("_Is_Filter_HiCutPointLightColor", 0);
+                }
+            }
+            EditorGUILayout.EndHorizontal();
+
+
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("MatCap Projection Camera");
+            //GUILayout.Space(60);
+            if (material.GetFloat(ShaderPropIs_Ortho) == 0)
+            {
+                if (GUILayout.Button("Perspective", middleButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIs_Ortho, 1);
+                }
+            }
+            else
+            {
+                if (GUILayout.Button("Orthographic", middleButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIs_Ortho, 0);
+                }
+            }
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.Space();
+            m_MaterialEditor.RangeProperty(gi_Intensity, "GI Intensity");
+            m_MaterialEditor.RangeProperty(unlit_Intensity, "Unlit Intensity");
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("SceneLights Hi-Cut Filter");
+            //GUILayout.Space(60);
+            if (material.GetFloat(ShaderPropIs_Filter_LightColor) == 0)
+            {
+                if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIs_Filter_LightColor, 1);
+                    material.SetFloat(ShaderPropIsLightColor_Base, 1);
+                    material.SetFloat(ShaderPropIs_LightColor_1st_Shade, 1);
+                    material.SetFloat(ShaderPropIs_LightColor_2nd_Shade, 1);
+                    if (material.HasProperty(ShaderPropOutline))//OUTLINEがある場合.
+                    {
+                        material.SetFloat(ShaderPropIs_LightColor_Outline, 1);
+                    }
+                }
+            }
+            else
+            {
+                if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIs_Filter_LightColor, 0);
+                }
+            }
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.Space();
+            EditorGUILayout.Space();
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button("Auto", shortButtonStyle))
+            {
+            }
+            if (GUILayout.Button("Apply", shortButtonStyle))
+            {
+            }
+            if (GUILayout.Button("Discard", shortButtonStyle))
+            {
+            }
+            EditorGUILayout.EndHorizontal();
+
         }
 
         void GUI_LightColorContribution(Material material)
