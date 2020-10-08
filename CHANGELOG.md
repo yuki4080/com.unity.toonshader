@@ -1,7 +1,10 @@
 # Changelog
 **Universal ToonShader**
+## [1.0.0-pre.1] - 2020-10-08
+Ready for package life cycle V2.
+
 ## [0.0.2-preview] - 2020-10-08
-### Now Unity-chan toon shader 2 is Universal Toon Shader.
+### Now Unity-chan toon shader 2 became Universal Toon Shader.
 Legacy, Universal and HDRP versions are integrated into one package.
 
 ## [0.0.1-preview] - 2019-07-26
