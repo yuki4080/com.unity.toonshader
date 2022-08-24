@@ -1,6 +1,8 @@
 # Changelog
-## [0.7.6-preview] - 2022-07-05
-# Next version is 0.7.6-preview
+## [0.7.6-preview] - 2022-08-24
+# Fixed:
+* typo in the docs.
+* A image wasn't displayed in index.html.
 
 ## [0.7.5-preview] - 2022-06-27
 * Improved the logic for blending outlines into a scene when there are no directional lights in the scene.
