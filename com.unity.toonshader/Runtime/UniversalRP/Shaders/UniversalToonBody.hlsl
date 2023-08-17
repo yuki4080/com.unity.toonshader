@@ -460,7 +460,7 @@
 
                 OUTPUT_LIGHTMAP_UV(v.lightmapUV, unity_LightmapST, o.lightmapUV);
 #if UNITY_VERSION >= 202310
-                OUTPUT_SH(positionWS, o.normalDir.xyz, GetWorldSpaceNormalizeViewDir(positionWS), o.vertexSH);
+                OUTPUT_SH4(positionWS, o.normalDir.xyz, GetWorldSpaceNormalizeViewDir(positionWS), o.vertexSH);
 #else
                 OUTPUT_SH(o.normalDir.xyz, o.vertexSH);
 #endif
