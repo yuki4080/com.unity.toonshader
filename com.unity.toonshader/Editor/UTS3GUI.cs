@@ -1423,13 +1423,8 @@ namespace UnityEditor.Rendering.Toon
                 m_MaterialEditor.TexturePropertySingleLine(Styles.secondShadeColorText, secondShadeMap, secondShadeColor);
             }
             EditorGUILayout.Space();
-            m_MaterialEditor.TextureScaleOffsetProperty(baseColor);
-            /*
-            _NormalMap_Foldout = FoldoutSubMenu(_NormalMap_Foldout, Styles.normalMapFoldout);
-            if (_NormalMap_Foldout)
-            {
-            }
-            */
+            m_MaterialEditor.TextureScaleOffsetProperty(mainTex);
+
             _ShadowControlMaps_Foldout = FoldoutSubMenu(_ShadowControlMaps_Foldout, Styles.shadowControlMapFoldout);
             if (_ShadowControlMaps_Foldout)
             {
