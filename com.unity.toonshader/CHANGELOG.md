@@ -1,7 +1,10 @@
 # Changelog
-## [0.10.1-preview] - 2024-06-24
+## [0.10.1-preview] - 2024-07-08
 ### Fixed:
-* TBD
+* URP Shader Eroors on newer then Unity 6000.0.9.
+* HDRP Shder Erorrs on Unity 6. (Thanks to riina)
+* SceneView Flickers when Light probe on HDRP shaders.
+
 
 ## [0.10.0-preview] - 2024-04-14
 ### Updated:
