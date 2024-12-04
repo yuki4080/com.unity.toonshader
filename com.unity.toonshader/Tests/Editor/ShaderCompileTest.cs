@@ -6,11 +6,11 @@ using System.Reflection;
 using UnityEngine.TestTools;
 
 namespace Unity.Rendering.ToonShader.Tests {
-    internal class ShaderCompileTest
+    public class ShaderCompileTest
     {
         
         [Test]
-        internal void CompileLegacyToonShadersDefault() {
+        public void CompileLegacyToonShadersDefault() {
             string[] guids      = AssetDatabase.FindAssets("t:Shader", new[] { LEGACY_SHADERS_PATH});
             int      numShaders = guids.Length;
             Assert.Greater(numShaders,0);
