@@ -1,9 +1,17 @@
 # Changelog
-## [0.11.0-preview] - 2024-12-04
-### Updated:
-* The classes that were unnecessarily declared as public have been changed to internal.
-* updated supported Unity versions.
-* Minimum Unity versions are 2021.3.19, 2022.3, 6000.0.
+
+## [0.11.0-preview] - 2024-12-11
+
+### Changed:
+* api: change the accessor of internal test classes to internal
+* api: change the accessor of UTS3MaterialHeaderScope to internal
+* api: change the accessor of UTS3MaterialHeaderScopeList to internal
+* api: change the accessor of UTS3MaterialEditorExtension and MaterialEditorExtension to internal
+* docs: update Unity Editor Compatibility
+* deps:  use com.unity.film-internal-utilities@0.19.2-preview
+
+### Removed:
+* api: remove unused empty UniversalToonShaderInfo class
 
 ## [0.10.2-preview] - 2024-08-20
 ### Fixed:
