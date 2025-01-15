@@ -30,13 +30,13 @@
  #define sampler_AdditionalLightsShadowmapTexture sampler_LinearClampCompare
 #endif
 
-#if USE_FORWARD_PLUS && defined(LIGHTMAP_ON) && defined(LIGHTMAP_SHADOW_MIXING)
+#if (USE_FORWARD_PLUS || USE_CLUSTER_LIGHT_LOOP) && defined(LIGHTMAP_ON) && defined(LIGHTMAP_SHADOW_MIXING)
 #define FORWARD_PLUS_SUBTRACTIVE_LIGHT_CHECK if (_AdditionalLightsColor[lightIndex].a > 0.0h) continue;
 #else
 #define FORWARD_PLUS_SUBTRACTIVE_LIGHT_CHECK
 #endif
 
-#if USE_FORWARD_PLUS
+#if USE_FORWARD_PLUS || USE_CLUSTER_LIGHT_LOOP
     #define UTS_LIGHT_LOOP_BEGIN(lightCount) { \
     uint lightIndex; \
     ClusterIterator _urp_internal_clusterIterator = ClusterInit(inputData.normalizedScreenSpaceUV, i.posWorld.xyz, 0); \
@@ -118,7 +118,7 @@
                 half fresnelTerm = Pow4(1.0 - saturate(dot(normalWS, viewDirectionWS)));
 
                 half3 indirectDiffuse = bakedGI * occlusion;
-#if USE_FORWARD_PLUS
+#if USE_FORWARD_PLUS || USE_CLUSTER_LIGHT_LOOP
                 half3 irradiance = CalculateIrradianceFromReflectionProbes(reflectVector, positionWS, brdfData.perceptualRoughness, normalizedScreenSpaceUV);
                 half3 indirectSpecular = irradiance * occlusion;
 #else
@@ -308,7 +308,7 @@
             {
                 UtsLight light;
                 light.direction = _MainLightPosition.xyz;
-#if USE_FORWARD_PLUS
+#if USE_FORWARD_PLUS || USE_CLUSTER_LIGHT_LOOP
                 #if defined(LIGHTMAP_ON)
                     light.distanceAttenuation = _MainLightColor.a;
                 #else
@@ -403,7 +403,7 @@
 // index to a perObjectLightIndex
             UtsLight GetAdditionalUtsLight(uint i, float3 positionWS,float4 positionCS)
             {
-#if USE_FORWARD_PLUS
+#if USE_FORWARD_PLUS || USE_CLUSTER_LIGHT_LOOP
                 int perObjectLightIndex = i;
 #else
                 int perObjectLightIndex = GetPerObjectLightIndex(i);

@@ -338,7 +338,7 @@
 
                 int pixelLightCount = GetAdditionalLightsCount();
 
-#if USE_FORWARD_PLUS
+#if USE_FORWARD_PLUS || USE_CLUSTER_LIGHT_LOOP
                 for (uint loopCounter = 0; loopCounter < min(URP_FP_DIRECTIONAL_LIGHTS_COUNT, MAX_VISIBLE_LIGHTS); loopCounter++)
                 {
                     int iLight = loopCounter;
@@ -436,7 +436,7 @@
                 // when the loop counter start from negative value, MAINLIGHT_IS_MAINLIGHT = -1, some compiler doesn't work well.
                 // for (int iLight = MAINLIGHT_IS_MAINLIGHT; iLight < pixelLightCount ; ++iLight)
                 UTS_LIGHT_LOOP_BEGIN(pixelLightCount - MAINLIGHT_IS_MAINLIGHT)
-#if USE_FORWARD_PLUS
+#if USE_FORWARD_PLUS || USE_CLUSTER_LIGHT_LOOP
                     int iLight = lightIndex;
 #else
                     int iLight = loopCounter + MAINLIGHT_IS_MAINLIGHT;
